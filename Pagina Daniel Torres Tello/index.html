@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <style>
+        .item1 { grid-area: header; }
+        .item2 { grid-area: main; }
+        .item3 { grid-area: footer; }
+        
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                'header header header'
+                'main main main'
+                'footer footer footer';
+            gap: 10px;
+            background-color:#555;
+            padding: 10px;
+        }
+        
+        .grid-container > div {
+            background-color: #555;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 100px;
+        }
+        * {box-sizing: border-box}
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial;
+        }
+
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 33%;
+        }
+
+        .tablink:hover {
+            background-color: #777;
+        }
+
+        .tabcontent {
+            color: white;
+            display: none;
+            padding: 1px 1px;
+            height: 100%;
+        }
+
+        #Inicio {background-color:#555;}
+        #Contacto {background-color: #ab4493;}
+        #SobreMi {background-color: #555}
+        </style>
+</head>
+<body>
+    <button class="tablink" onclick="openPage('Inicio', this, 'red')" id="defaultOpen">Inicio</button>
+    <button class="tablink" onclick="openPage('Contacto', this, 'blue')">Contacto</button>
+    <button class="tablink" onclick="openPage('SobreMi', this, 'orange')">Sobre mi</button>
+    
+    <div id="Inicio" class="tabcontent">
+        <div class="grid-container">
+            <div class="item1">Imobiliaria</div>
+            <div class="item2">
+                 <img src="./img/main.jpg" width="100%" height="auto">   
+            </div>  
+            <div class="item3">
+                <a title="Youtube" href="https://www.youtube.com/"><img src="./img/youtube.png" alt="Youtube" target="blank" width="70px" height="70px"></a>
+                <a title="Twitter" href="https://www.youtube.com/"><img src="./img/twitter.png" alt="Twitter" target="blank" width="70px" height="70px"></a>
+                <a title="tiktok" href="https://www.youtube.com/"><img src="./img/tiktok.png" alt="tiktok" target="blank" width="70px" height="70px"></a>
+            </div>
+          </div>
+    </div>
+    
+    <div id="News" class="tabcontent">
+      <h3>News</h3>
+      <p>Some news this fine day!</p> 
+    </div>
+    
+    <div id="Contacto" class="tabcontent">
+        <div class="contact_form">
+
+            <div class="formulario">      
+              <h1>Formulario de contacto</h1>
+                <h3>Escríbenos y en breve los pondremos en contacto contigo</h3>
+                  <form action="submeter-formulario.php" method="post">       
+                        <p>
+                          <label for="nombre" class="colocar_nombre">Nombre
+                            <span class="obligatorio">*</span>
+                          </label>
+                            <input type="text" name="introducir_nombre" id="nombre" required="obligatorio" placeholder="Escribe tu nombre">
+                        </p>
+                        <p>
+                          <label for="email" class="colocar_email">Email
+                            <span class="obligatorio">*</span>
+                          </label>
+                            <input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email">
+                        </p>
+                        <p>
+                          <label for="telefone" class="colocar_telefono">Teléfono
+                          </label>
+                            <input type="tel" name="introducir_telefono" id="telefono" placeholder="Escribe tu teléfono">
+                        </p>    
+                        <p>
+                          <label for="website" class="colocar_website">Sitio web
+                          </label>
+                            <input type="url" name="introducir_website" id="website" placeholder="Escribe la URL de tu web">
+                        </p>    
+                        <p>
+                          <label for="asunto" class="colocar_asunto">Asunto
+                            <span class="obligatorio">*</span>
+                          </label>
+                            <input type="text" name="introducir_asunto" id="assunto" required="obligatorio" placeholder="Escribe un asunto">
+                        </p>    
+                        <p>
+                          <label for="mensaje" class="colocar_mensaje">Mensaje
+                            <span class="obligatorio">*</span>
+                          </label>                     
+                                            <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..."></textarea> 
+                                        </p>                    
+                        <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
+                        <p class="aviso">
+                          <span class="obligatorio"> * </span>los campos son obligatorios.
+                        </p>
+                  </form>
+            </div>  
+          </div>
+        
+    </div>
+    
+    <div id="SobreMi" class="tabcontent"  style="background-image: url(./img/fondo.jpg);">
+      <p style="color: white;font-size: 30px;">Pagina realizada por Daniel Torres</p>
+      
+    </div>
+    
+    <script>
+    function openPage(pageName,elmnt,color) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+      document.getElementById(pageName).style.display = "block";
+      elmnt.style.backgroundColor = color;
+    }
+    
+    document.getElementById("defaultOpen").click();
+    </script>
+</body>
+</html>
